@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Rutas bloqueadas (evitar duplicados o archivos temporales)
+Disallow: /*.php$
+Disallow: /backups/
+Disallow: /config/
+
+# Mapa del sitio oficial
+Sitemap: https://guayacanspa.cl/sitemap.xml

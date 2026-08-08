@@ -1,0 +1,342 @@
+/* Landings de servicio — reutiliza tokens de style.css */
+.page-nav{
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(20,20,20,.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(197,160,89,.18);
+}
+.page-nav__inner{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0;
+}
+.page-nav__logo{
+  height: 40px;
+  width: auto;
+  max-width: 160px;
+  object-fit: contain;
+  background: #fff;
+  padding: 4px 8px;
+  border-radius: 8px;
+}
+.page-nav__links{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 18px;
+  font-size: 13px;
+  font-weight: 500;
+}
+.page-nav__links a{ color: var(--white-dim); transition: color .25s ease; }
+.page-nav__links a:hover,
+.page-nav__links a.is-current{ color: var(--gold-light); }
+
+.page-foot{
+  padding: 40px 0;
+  border-top: 1px solid rgba(197,160,89,.15);
+  background: var(--charcoal-2);
+}
+.page-foot__inner{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.page-foot__nap{
+  margin: 0;
+  font-size: 13px;
+  color: var(--white-dim);
+  line-height: 1.6;
+}
+.page-foot__nap strong{ color: var(--white); font-weight: 600; }
+.page-foot__nap a{ color: var(--gold-light); }
+.page-foot__gbp{
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gold-light);
+  border-bottom: 1px solid var(--gold-dim);
+  padding-bottom: 2px;
+}
+
+.breadcrumb{
+  padding: 18px 0 0;
+  font-size: 12.5px;
+  color: var(--white-dim);
+}
+.breadcrumb ol{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.breadcrumb a{ color: var(--gold-light); }
+.breadcrumb [aria-current="page"]{ color: var(--white-dim); }
+
+/* Shared section rhythm for service landings */
+.galpones-hero,
+.obras-civiles-hero,
+.mantencion-hero{
+  position: relative;
+  padding: 72px 0 64px;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(20,20,20,.55), var(--charcoal) 88%),
+    radial-gradient(ellipse at 20% 0%, rgba(197,160,89,.12), transparent 50%);
+}
+.galpones-hero__content,
+.obras-civiles-hero__content,
+.mantencion-hero__content{ position: relative; z-index: 1; max-width: 780px; }
+
+.galpones-hero__eyebrow,
+.obras-civiles-hero__eyebrow,
+.mantencion-hero__eyebrow,
+.galpones-section-header__eyebrow,
+.obras-civiles-header__eyebrow,
+.mantencion-header__eyebrow,
+.obras-civiles-cta__eyebrow,
+.mantencion-cta__eyebrow{
+  font-size: 12px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin: 0 0 14px;
+}
+
+.galpones-hero__title,
+.obras-civiles-hero__title,
+.mantencion-hero__title{
+  font-family: var(--font-display);
+  font-size: clamp(28px, 5vw, 48px);
+  line-height: 1.12;
+  margin: 0 0 18px;
+  color: var(--white);
+}
+
+.galpones-hero__lead,
+.obras-civiles-hero__lead,
+.mantencion-hero__lead{
+  font-size: clamp(15px, 1.5vw, 18px);
+  color: var(--white-dim);
+  font-weight: 300;
+  max-width: 560px;
+  margin: 0 0 28px;
+  line-height: 1.7;
+}
+
+.galpones-hero__actions,
+.obras-civiles-hero__actions,
+.mantencion-hero__actions{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.galpones-ventajas,
+.galpones-proceso,
+.galpones-specs,
+.galpones-cotizador,
+.obras-civiles-muros,
+.obras-civiles-pavimentacion,
+.obras-civiles-cierres,
+.obras-civiles-cta,
+.mantencion-cubiertas,
+.mantencion-fachadas,
+.mantencion-pinturas,
+.mantencion-cta{
+  padding: 88px 0;
+}
+.galpones-ventajas,
+.galpones-specs,
+.obras-civiles-muros,
+.obras-civiles-cierres,
+.mantencion-cubiertas,
+.mantencion-pinturas{ background: var(--charcoal-2); }
+.galpones-proceso,
+.galpones-cotizador,
+.obras-civiles-pavimentacion,
+.obras-civiles-cta,
+.mantencion-fachadas,
+.mantencion-cta{ background: var(--charcoal); }
+
+.galpones-section-header,
+.obras-civiles-header,
+.mantencion-header{ margin-bottom: 40px; max-width: 720px; }
+.galpones-section-header--center,
+.obras-civiles-header--center,
+.mantencion-header--center{
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.galpones-section-header__title,
+.obras-civiles-header__title,
+.mantencion-header__title{
+  font-family: var(--font-display);
+  font-size: clamp(26px, 3.5vw, 40px);
+  margin: 0 0 16px;
+  color: var(--white);
+}
+.galpones-section-header__text,
+.obras-civiles-header__text,
+.mantencion-header__text{
+  margin: 0;
+  color: var(--white-dim);
+  font-weight: 300;
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+.galpones-ventajas__grid,
+.galpones-specs__grid,
+.obras-civiles-muros__grid,
+.obras-civiles-pavimentacion__grid,
+.obras-civiles-cierres__grid,
+.mantencion-cubiertas__grid,
+.mantencion-fachadas__grid,
+.mantencion-pinturas__grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.galpones-card,
+.galpones-spec,
+.galpones-step__card,
+.obras-civiles-fact,
+.obras-civiles-card,
+.mantencion-fact,
+.mantencion-card{
+  padding: 28px 24px;
+  border-radius: var(--radius);
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(197,160,89,.2);
+}
+
+.galpones-card__label,
+.galpones-step__title,
+.obras-civiles-card__label,
+.mantencion-card__label{
+  margin: 0 0 10px;
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: var(--white);
+}
+.galpones-spec__title,
+.obras-civiles-fact__title,
+.mantencion-fact__title{
+  margin: 0 0 10px;
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: var(--white);
+}
+.galpones-card__text,
+.galpones-spec__text,
+.galpones-step__text,
+.obras-civiles-fact__text,
+.obras-civiles-card__text,
+.mantencion-fact__text,
+.mantencion-card__text{
+  margin: 0;
+  font-size: 14px;
+  color: var(--white-dim);
+  font-weight: 300;
+  line-height: 1.65;
+}
+
+.galpones-proceso__steps{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.galpones-step__num{
+  display: block;
+  font-family: var(--font-display);
+  font-size: 28px;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.galpones-cotizador__placeholder,
+.obras-civiles-cta__panel,
+.mantencion-cta__panel{
+  margin-top: 12px;
+  padding: 36px 28px;
+  border-radius: var(--radius);
+  border: 1px dashed rgba(197,160,89,.45);
+  background: rgba(197,160,89,.05);
+  text-align: center;
+}
+.obras-civiles-cta__panel,
+.mantencion-cta__panel{ border-style: solid; text-align: left; max-width: 720px; margin: 0 auto; }
+.galpones-cotizador__placeholder-label{
+  margin: 0 0 8px;
+  font-size: 11px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.galpones-cotizador__placeholder-title,
+.obras-civiles-cta__title,
+.mantencion-cta__title{
+  margin: 0 0 12px;
+  font-family: var(--font-display);
+  font-size: 24px;
+  color: var(--white);
+}
+.galpones-cotizador__placeholder-hint,
+.obras-civiles-cta__text,
+.mantencion-cta__text{
+  margin: 0 0 22px;
+  color: var(--white-dim);
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+@media (max-width: 980px){
+  .galpones-ventajas__grid,
+  .galpones-specs__grid,
+  .obras-civiles-muros__grid,
+  .obras-civiles-pavimentacion__grid,
+  .obras-civiles-cierres__grid,
+  .mantencion-cubiertas__grid,
+  .mantencion-fachadas__grid,
+  .mantencion-pinturas__grid,
+  .galpones-proceso__steps{ grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px){
+  .page-nav__links{ display: none; }
+  .galpones-ventajas__grid,
+  .galpones-specs__grid,
+  .obras-civiles-muros__grid,
+  .obras-civiles-pavimentacion__grid,
+  .obras-civiles-cierres__grid,
+  .mantencion-cubiertas__grid,
+  .mantencion-fachadas__grid,
+  .mantencion-pinturas__grid,
+  .galpones-proceso__steps{ grid-template-columns: 1fr; }
+  .galpones-ventajas,
+  .galpones-proceso,
+  .galpones-specs,
+  .galpones-cotizador,
+  .obras-civiles-muros,
+  .obras-civiles-pavimentacion,
+  .obras-civiles-cierres,
+  .obras-civiles-cta,
+  .mantencion-cubiertas,
+  .mantencion-fachadas,
+  .mantencion-pinturas,
+  .mantencion-cta{ padding: 64px 0; }
+}
