@@ -3,12 +3,12 @@
     RewriteBase /
 
     # --- Forzar HTTPS (301) ---
-    # Cubre TLS directo y proxies (Cloudflare / load balancer) vía X-Forwarded-Proto
-    RewriteCond %{HTTPS} !=on
+    # Hostinger/LiteSpeed: HTTPS off + proxy vía X-Forwarded-Proto
+    RewriteCond %{HTTPS} off
     RewriteCond %{HTTP:X-Forwarded-Proto} !https [NC]
     RewriteRule ^ https://guayacanspa.cl%{REQUEST_URI} [L,R=301]
 
-    # Canonical host → apex sin www
+    # Canonical host → apex sin www (evita duplicidad de indexación)
     RewriteCond %{HTTP_HOST} ^www\.guayacanspa\.cl$ [NC]
     RewriteRule ^ https://guayacanspa.cl%{REQUEST_URI} [L,R=301]
 
@@ -26,6 +26,15 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME}.html -f
     RewriteRule ^(.+?)/?$ $1.html [L]
+</IfModule>
+
+# --- Cabeceras de seguridad (LiteSpeed / Apache) ---
+<IfModule mod_headers.c>
+    # HSTS: el navegador recuerda HTTPS (activar solo con SSL válido)
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
 </IfModule>
 
 # Bloquear listado de directorios
