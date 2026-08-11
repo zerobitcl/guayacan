@@ -175,7 +175,7 @@
 .galpones-ventajas,
 .galpones-proceso,
 .galpones-specs,
-.galpones-cotizador,
+.galpones-cta,
 .obras-civiles-muros,
 .obras-civiles-pavimentacion,
 .obras-civiles-cierres,
@@ -193,7 +193,7 @@
 .mantencion-cubiertas,
 .mantencion-pinturas{ background: var(--charcoal-2); }
 .galpones-proceso,
-.galpones-cotizador,
+.galpones-cta,
 .obras-civiles-pavimentacion,
 .obras-civiles-cta,
 .mantencion-fachadas,
@@ -301,26 +301,28 @@
   margin-bottom: 10px;
 }
 
-.galpones-cotizador__placeholder,
+.galpones-cta__panel,
 .obras-civiles-cta__panel,
 .mantencion-cta__panel{
-  margin-top: 12px;
+  margin: 0 auto;
+  max-width: 720px;
   padding: 36px 28px;
   border-radius: var(--radius);
-  border: 1px dashed rgba(197,160,89,.45);
+  border: 1px solid rgba(197,160,89,.45);
   background: rgba(197,160,89,.05);
-  text-align: center;
+  text-align: left;
 }
-.obras-civiles-cta__panel,
-.mantencion-cta__panel{ border-style: solid; text-align: left; max-width: 720px; margin: 0 auto; }
-.galpones-cotizador__placeholder-label{
-  margin: 0 0 8px;
-  font-size: 11px;
+.galpones-cta__eyebrow,
+.obras-civiles-cta__eyebrow,
+.mantencion-cta__eyebrow{
+  margin: 0 0 10px;
+  font-size: 12px;
   letter-spacing: .16em;
   text-transform: uppercase;
   color: var(--gold);
+  font-weight: 600;
 }
-.galpones-cotizador__placeholder-title,
+.galpones-cta__title,
 .obras-civiles-cta__title,
 .mantencion-cta__title{
   margin: 0 0 12px;
@@ -328,7 +330,7 @@
   font-size: 24px;
   color: var(--white);
 }
-.galpones-cotizador__placeholder-hint,
+.galpones-cta__text,
 .obras-civiles-cta__text,
 .mantencion-cta__text{
   margin: 0 0 22px;
@@ -380,7 +382,7 @@
   .galpones-ventajas,
   .galpones-proceso,
   .galpones-specs,
-  .galpones-cotizador,
+  .galpones-cta,
   .obras-civiles-muros,
   .obras-civiles-pavimentacion,
   .obras-civiles-cierres,
