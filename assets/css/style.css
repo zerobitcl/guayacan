@@ -951,6 +951,56 @@ body.is-menu-open{ overflow: hidden; }
 }
 
 /* ============================================================
+   CAREERS / CV
+   ============================================================ */
+.careers{
+  padding: 100px 0;
+  background:
+    radial-gradient(ellipse at 12% 20%, rgba(58,109,140,.14), transparent 50%),
+    linear-gradient(180deg, var(--charcoal) 0%, var(--charcoal-2) 100%);
+  border-top: 1px solid rgba(197,160,89,.12);
+}
+.careers__inner{
+  max-width: 720px;
+}
+.careers__text{
+  color: var(--white-dim);
+  font-size: 16.5px;
+  font-weight: 300;
+  line-height: 1.7;
+  margin: 0 0 22px;
+  max-width: 58ch;
+}
+.careers__email{
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: clamp(22px, 3.2vw, 30px);
+  font-weight: 600;
+  color: var(--gold-light);
+  border-bottom: 1px solid var(--gold-dim);
+  padding-bottom: 4px;
+  margin-bottom: 14px;
+  transition: color .3s ease, border-color .3s ease;
+  word-break: break-all;
+}
+.careers__email:hover{
+  color: var(--gold);
+  border-color: var(--gold);
+}
+.careers__hint{
+  margin: 0 0 28px;
+  font-size: 13.5px;
+  color: rgba(245,243,239,.45);
+  font-weight: 300;
+}
+.careers__actions{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+}
+
+/* ============================================================
    WHATSAPP FLOAT
    ============================================================ */
 .whatsapp-float{
@@ -1078,7 +1128,9 @@ body.is-menu-open{ overflow: hidden; }
   .footer__logo-img{ height: 72px; }
 
   .about{ padding: 72px 0; }
-  .services, .portfolio, .gallery, .clients, .team, .resources, .link-block{ padding: 72px 0; }
+  .services, .portfolio, .gallery, .clients, .team, .resources, .link-block, .careers{ padding: 72px 0; }
+  .careers__actions{ flex-direction: column; align-items: stretch; }
+  .careers__actions .btn{ width: 100%; text-align: center; white-space: normal; }
 
   .whatsapp-float{ right: 14px; bottom: 14px; width: 52px; height: 52px; }
 
