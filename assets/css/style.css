@@ -421,6 +421,12 @@ body.is-menu-open{ overflow: hidden; }
 .pillar-card p{
   font-size: 13.5px; color: var(--white-dim); font-weight:300; margin:0; line-height:1.65;
 }
+.pillar-card a{
+  color: var(--gold-light);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.pillar-card a:hover{ color: var(--gold); }
 
 .about__whatsapp-panel{
   display:flex; align-items:center; gap: 20px; flex-wrap: wrap;
