@@ -12,7 +12,9 @@
     RewriteCond %{HTTP_HOST} ^www\.guayacanspa\.cl$ [NC]
     RewriteRule ^ https://guayacanspa.cl%{REQUEST_URI} [L,R=301]
 
-    # /clientes → sección del home (no hay clientes.html; evita 404 por enlaces externos)
+    # URLs legacy one-page → anclas del home (evita 404 indexados en GSC)
+    RewriteRule ^sobre-nosotros/?$ /#nosotros [R=301,L,NE]
+    RewriteRule ^nuestro-equipo/?$ /#equipo [R=301,L,NE]
     RewriteRule ^clientes/?$ /#clientes [R=301,L,NE]
 
     # --- URLs limpias: quitar .html (solo GET/HEAD vía THE_REQUEST) ---
