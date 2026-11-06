@@ -477,6 +477,7 @@ body.is-menu-open{ overflow: hidden; }
   color: var(--gold);
   margin-bottom: 14px;
 }
+.team-card h2,
 .team-card h3{
   font-family: var(--font-display);
   font-size: 22px;

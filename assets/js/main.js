@@ -7,35 +7,80 @@
     if (loader) setTimeout(() => loader.classList.add("is-hidden"), 250);
   });
 
-  /* ---------- Sticky navbar ---------- */
+  /* ---------- Sticky navbar (solo home) ---------- */
   const nav = document.getElementById("nav");
-  const onScrollNav = () => {
-    if (window.scrollY > 40) nav.classList.add("is-scrolled");
-    else nav.classList.remove("is-scrolled");
-  };
-  document.addEventListener("scroll", onScrollNav, { passive: true });
-  onScrollNav();
+  if (nav) {
+    const onScrollNav = () => {
+      if (window.scrollY > 40) nav.classList.add("is-scrolled");
+      else nav.classList.remove("is-scrolled");
+    };
+    document.addEventListener("scroll", onScrollNav, { passive: true });
+    onScrollNav();
+  }
 
-  /* ---------- Mobile menu ---------- */
+  /* ---------- Mobile menu (solo home) ---------- */
   const burger = document.getElementById("navBurger");
   const navLinks = document.getElementById("navLinks");
-  const setMenuOpen = (open) => {
-    navLinks.classList.toggle("is-open", open);
-    burger.classList.toggle("is-open", open);
-    burger.setAttribute("aria-expanded", open ? "true" : "false");
-    burger.setAttribute("aria-label", open ? "Cerrar menú de navegación" : "Abrir menú de navegación");
-    document.body.classList.toggle("is-menu-open", open);
+  if (burger && navLinks) {
+    const setMenuOpen = (open) => {
+      navLinks.classList.toggle("is-open", open);
+      burger.classList.toggle("is-open", open);
+      burger.setAttribute("aria-expanded", open ? "true" : "false");
+      burger.setAttribute("aria-label", open ? "Cerrar menú de navegación" : "Abrir menú de navegación");
+      document.body.classList.toggle("is-menu-open", open);
+    };
+    burger.addEventListener("click", () => setMenuOpen(!navLinks.classList.contains("is-open")));
+    navLinks.querySelectorAll("a").forEach((a) =>
+      a.addEventListener("click", () => setMenuOpen(false))
+    );
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && navLinks.classList.contains("is-open")) setMenuOpen(false);
+    });
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 1100 && navLinks.classList.contains("is-open")) setMenuOpen(false);
+    });
+  }
+
+  /* ---------- Conversiones GA4 (G-8N23LMXC3B) ----------
+     gtag('event') las envía a Analytics. La consola queda para comprobar el clic.
+     En Admin hay que marcarlas como eventos clave:
+     click_whatsapp, phone_click, generate_lead. */
+  const track = (name, params) => {
+    const payload = Object.assign({ event: name }, params);
+    window.dataLayer = window.dataLayer || [];
+    if (typeof window.gtag === "function") window.gtag("event", name, params);
+    else window.dataLayer.push(payload);
+    console.info("GA4", name, params);
   };
-  burger.addEventListener("click", () => setMenuOpen(!navLinks.classList.contains("is-open")));
-  navLinks.querySelectorAll("a").forEach((a) =>
-    a.addEventListener("click", () => setMenuOpen(false))
-  );
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && navLinks.classList.contains("is-open")) setMenuOpen(false);
+
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest("a[href]");
+    if (!link) return;
+    let url;
+    try { url = new URL(link.href, window.location.href); }
+    catch { return; }
+    const host = url.hostname.replace(/^www\./, "");
+    if (host === "wa.me" || host === "api.whatsapp.com") {
+      track("click_whatsapp", {
+        link_url: url.href,
+        page_location: window.location.href
+      });
+    } else if (url.protocol === "tel:") {
+      track("phone_click", {
+        link_url: url.href,
+        page_location: window.location.href
+      });
+    }
   });
-  window.addEventListener("resize", () => {
-    if (window.innerWidth > 1100 && navLinks.classList.contains("is-open")) setMenuOpen(false);
-  });
+
+  document.addEventListener("submit", (event) => {
+    const form = event.target;
+    if (!(form instanceof HTMLFormElement)) return;
+    track("generate_lead", {
+      form_id: form.id || form.getAttribute("name") || "contact",
+      page_location: window.location.href
+    });
+  }, true);
 
   /* ---------- Reveal on scroll ---------- */
   const revealEls = document.querySelectorAll("[data-reveal]");

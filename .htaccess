@@ -12,10 +12,11 @@
     RewriteCond %{HTTP_HOST} ^www\.guayacanspa\.cl$ [NC]
     RewriteRule ^ https://guayacanspa.cl%{REQUEST_URI} [L,R=301]
 
-    # URLs legacy one-page → anclas del home (evita 404 indexados en GSC)
-    RewriteRule ^sobre-nosotros/?$ /#nosotros [R=301,L,NE]
-    RewriteRule ^nuestro-equipo/?$ /#equipo [R=301,L,NE]
-    RewriteRule ^clientes/?$ /#clientes [R=301,L,NE]
+    # /sobre-nosotros y /nuestro-equipo son documentos propios (*.html).
+    # No redirigirlos: un "#" en la sustitución lo trata LiteSpeed como comentario
+    # y la URL queda en 404.
+    # /clientes no tiene documento. Sin fragmento: el "#" anula flags y responde 404.
+    RewriteRule ^clientes/?$ / [R=301,L]
 
     # --- URLs limpias: quitar .html (solo GET/HEAD vía THE_REQUEST) ---
     # /index.html → /
