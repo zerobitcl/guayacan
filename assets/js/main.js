@@ -56,30 +56,23 @@
   document.addEventListener("click", (event) => {
     const link = event.target.closest("a[href]");
     if (!link) return;
-    let url;
-    try { url = new URL(link.href, window.location.href); }
-    catch { return; }
-    const host = url.hostname.replace(/^www\./, "");
-    if (host === "wa.me" || host === "api.whatsapp.com") {
-      track("click_whatsapp", {
-        link_url: url.href,
-        page_location: window.location.href
-      });
-    } else if (url.protocol === "tel:") {
-      track("phone_click", {
-        link_url: url.href,
-        page_location: window.location.href
-      });
+    const href = link.getAttribute("href") || "";
+    const hrefLower = href.toLowerCase();
+    if (hrefLower.includes("wa.me") || hrefLower.includes("whatsapp")) {
+      track("click_whatsapp", { link_url: link.href });
+      track("generate_lead", { method: "whatsapp" });
+      return;
+    }
+    if (hrefLower.startsWith("tel:")) {
+      track("phone_click", { phone_number: link.href });
+      track("generate_lead", { method: "phone" });
     }
   });
 
   document.addEventListener("submit", (event) => {
     const form = event.target;
     if (!(form instanceof HTMLFormElement)) return;
-    track("generate_lead", {
-      form_id: form.id || form.getAttribute("name") || "contact",
-      page_location: window.location.href
-    });
+    track("generate_lead", { method: "form" });
   }, true);
 
   /* ---------- Reveal on scroll ---------- */
