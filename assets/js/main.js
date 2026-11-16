@@ -42,37 +42,42 @@
   }
 
   /* ---------- Conversiones GA4 (G-8N23LMXC3B) ----------
-     gtag('event') las envía a Analytics. La consola queda para comprobar el clic.
-     En Admin hay que marcarlas como eventos clave:
+     Un solo listener para todo el sitio: index ya carga este archivo,
+     y un segundo snippet inline duplicaría el hit.
+     Marcar en GA4 Admin > Eventos como eventos clave:
      click_whatsapp, phone_click, generate_lead. */
   const track = (name, params) => {
-    const payload = Object.assign({ event: name }, params);
     window.dataLayer = window.dataLayer || [];
     if (typeof window.gtag === "function") window.gtag("event", name, params);
-    else window.dataLayer.push(payload);
-    console.info("GA4", name, params);
+    else window.dataLayer.push(Object.assign({ event: name }, params));
   };
 
   document.addEventListener("click", (event) => {
     const link = event.target.closest("a[href]");
     if (!link) return;
-    const href = link.getAttribute("href") || "";
-    const hrefLower = href.toLowerCase();
-    if (hrefLower.includes("wa.me") || hrefLower.includes("whatsapp")) {
-      track("click_whatsapp", { link_url: link.href });
-      track("generate_lead", { method: "whatsapp" });
+    const hrefLower = (link.getAttribute("href") || "").toLowerCase();
+    if (hrefLower.includes("wa.me") || hrefLower.includes("whatsapp.com") || hrefLower.includes("api.whatsapp.com")) {
+      track("click_whatsapp", {
+        event_category: "engagement",
+        event_label: link.href
+      });
       return;
     }
     if (hrefLower.startsWith("tel:")) {
-      track("phone_click", { phone_number: link.href });
-      track("generate_lead", { method: "phone" });
+      track("phone_click", {
+        event_category: "engagement",
+        event_label: link.href
+      });
     }
   });
 
   document.addEventListener("submit", (event) => {
     const form = event.target;
     if (!(form instanceof HTMLFormElement)) return;
-    track("generate_lead", { method: "form" });
+    track("generate_lead", {
+      event_category: "lead",
+      event_label: form.getAttribute("id") || form.getAttribute("action") || "contact_form"
+    });
   }, true);
 
   /* ---------- Reveal on scroll ---------- */
